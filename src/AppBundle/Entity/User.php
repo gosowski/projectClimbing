@@ -28,6 +28,11 @@ class User extends BaseUser
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="Test", mappedBy="user")
+     */
+    private $tests;
+
+    /**
      * Get id
      *
      * @return int
@@ -35,5 +40,39 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add test
+     *
+     * @param \AppBundle\Entity\Test $test
+     *
+     * @return User
+     */
+    public function addTest(\AppBundle\Entity\Test $test)
+    {
+        $this->tests[] = $test;
+
+        return $this;
+    }
+
+    /**
+     * Remove test
+     *
+     * @param \AppBundle\Entity\Test $test
+     */
+    public function removeTest(\AppBundle\Entity\Test $test)
+    {
+        $this->tests->removeElement($test);
+    }
+
+    /**
+     * Get tests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTests()
+    {
+        return $this->tests;
     }
 }
