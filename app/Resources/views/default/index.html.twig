@@ -26,7 +26,35 @@
 
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5">Test samooceny</h1>
+                <p class="lead">Odpowiedz na każde pytanie, wybierając odpowiednią liczbę. Aby wyniki były jak
+                    najbardziej
+                    dokładne, każde pytanie oceń na podstawie najświeższych doświadczeń. Zrób chwilę przerwy i
+                    przypomnij sobie
+                    swoje ostatnie wspinaczki. Nie analizuj pytań, nie staraj się odgadywać ich intencji - na to
+                    przyjdzie czas
+                    po ukończeniu testu.</p>
+                <p><strong>0</strong> = prawie zawsze
+                    <strong>1</strong> = często
+                    <strong>2</strong> = przez połowę czasu
+                    <strong>3</strong> = czasami
+                    <strong>4</strong> = rzadko
+                    <strong>5</strong> = nigdy</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="/question/1/" class="btn btn-outline-primary">Rozpocznij</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
 
 {% block footer %}
     <!-- Footer -->
