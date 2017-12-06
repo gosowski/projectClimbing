@@ -85,8 +85,12 @@ class QuestionController extends Controller
 
         $testId = $session->get('test');
 
-        //if no user
+        //if no user logged
         if($user === null) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $entityManager->getRepository("AppBundle:Question");
+
+            $allQuestions = $repository->findAll();
 
             //get session with results
             $allAnswers = $session->get('answers');
@@ -94,7 +98,9 @@ class QuestionController extends Controller
             //clear session
             $session->invalidate('answers');
 
-            return $this->render('AppBundle:Answer:show_result.html.twig', ['answers' => $allAnswers ]);
+            return $this->render('AppBundle:Answer:show_result.html.twig', [
+                'answers' => $allAnswers,
+                'questions' => $allQuestions]);
         }
 
         //if user is logged

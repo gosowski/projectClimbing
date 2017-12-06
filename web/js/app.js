@@ -1,16 +1,18 @@
 $(function () {
+
     var prevBtn = $('#previous');
     var nextBtn = $('#next');
-    var form = $("#answer");
 
-    if(questionId == 1) {
+    var form = $("#answer");
+    if(questionId === 1) {
         prevBtn.addClass("disabled");
         prevBtn.attr('disabled', true);
-    } else if (questionId == 30) {
+    } else if (questionId === 30) {
         nextBtn.removeClass("btn-outline-primary").addClass("btn-outline-success");
         nextBtn.text("Wynik");
-    }
 
+
+    }
 
     //event for next button
     $(nextBtn).on('click', function () {
@@ -20,7 +22,7 @@ $(function () {
         var newHref = "/question/"+updateId+"/";
        form.attr('action', newHref);
 
-       if(questionId == 30) {
+       if(questionId === 30) {
            form.attr('action', '/result/');
        }
 
@@ -34,7 +36,6 @@ $(function () {
         var newHref = "/question/"+updatedId+"/";
 
         form.attr('action', newHref);
-
     });
 
 });

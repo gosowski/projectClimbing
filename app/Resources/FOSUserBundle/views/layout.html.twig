@@ -2,19 +2,27 @@
 
 {% block content %}
 
-    {% if app.request.hasPreviousSession %}
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-3"></div>
+            <div class="col-6">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
 
-    <div>
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
+                <div>
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
     </div>
 
 {% endblock %}
