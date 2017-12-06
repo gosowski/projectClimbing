@@ -1,9 +1,22 @@
 {% extends "default/index.html.twig" %}
 
 {% block content %}
-    <ul>
-        {% for answer in answers %}
-            <li><a href="/singleQuestion/{{ answer.question.id }}/">Pytanie numer: {{ answer.question.id }}</a> --- {{ answer.value }}</li>
-        {% endfor %}
-    </ul>
+    <table class="table table-hover table-sm text-center">
+        <thead>
+        <tr>
+            <th scope="col">Numer pytania</th>
+            <th scope="col">Twoja ocena</th>
+            <th scope="col">Zobacz pytanie</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for answer in answers %}
+        <tr>
+            <td>{{ answer.question.id }}</td>
+            <td>{{ answer.value }}</td>
+            <td><a class="btn btn-outline-info btn-sm" href="/singleQuestion/{{ answer.question.id }}/">Zobacz</a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

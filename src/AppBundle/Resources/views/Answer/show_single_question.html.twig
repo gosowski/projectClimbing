@@ -1,5 +1,8 @@
 {% extends "default/index.html.twig" %}
 
 {% block content %}
-    {{ question.text }}
+    <div class="form-group">
+        {{ question.text }}
+        <a class="btn btn-outline-info btn-sm" href="/result/">Powrót</a>
+    </div>
 {% endblock %}
