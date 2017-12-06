@@ -1,0 +1,55 @@
+{% extends "default/index.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="legend">
+        <div class="col-lg-12 text-center">
+
+            <p><strong>0</strong> = prawie zawsze
+                <strong>1</strong> = często
+                <strong>2</strong> = przez połowę czasu
+                <strong>3</strong> = czasami
+                <strong>4</strong> = rzadko
+                <strong>5</strong> = nigdy</p>
+        </div>
+    </div>
+    <div class="row" id="questions">
+        <div class="col-lg-12 text-center">
+            <p>{{ question.text }}</p>
+
+        </div>
+    </div>
+    <div class="row" id="answers">
+        <div class="col-lg-12 text-center">
+            <form action="" method="get">
+                <label class="radio-inline"><input type="radio" name="optradio" value="0">Option 0</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="1">Option 1</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="2">Option 2</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="3">Option 3</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="4">Option 4</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="5">Option 5</label>
+            </form>
+        </div>
+    </div>
+    <div class="row" id="nextPrev">
+        <div class="col-md-4">
+                <a class="btn btn-outline-primary" href="/question/{{ id }}/" id="previous">Poprzednie</a>
+        </div>
+        <div class="col-md-4 offset-md-4">
+                <a class="btn btn-outline-primary" href="/question/{{ id }}/" id="next">Następne</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="progress">
+                {% set val = id*100/30 %}
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{ val }}%"
+                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        var questionId = {{ id }};
+    </script>
+{% endblock %}
