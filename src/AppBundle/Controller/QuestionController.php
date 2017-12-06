@@ -14,34 +14,58 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class QuestionController extends Controller
 {
     /**
-     * @Route("/question/{id}/")
+     * @Route("/question/{id}/", defaults={"id"=1})
      */
     public function startAction($id, Request $request, SessionInterface $session) {
+
+        //check if user is logged
+        $user = $this->getUser();
+
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("AppBundle:Question");
 
         //load all question by id
         $question = $repository->find($id);
 
-        //create new form with radio buttons
-        $answer = new Answer();
+        $newAnswer = new Answer();
 
-        $newForm = $this->generateForm($answer);
+        $newForm = $this->generateForm($newAnswer);
 
         $newForm->handleRequest($request);
 
         if($newForm->isSubmitted()) {
             $newForm->getData();
 
-            //create new array session
-            $answers = $session->get('answers',[]);
+            //if not logged - do not save value into db
+            if($user === null) {
+                //create new array session
+                $answers = $session->get('answers',[]);
 
-            $answers[$id] = $answer->getValue();
+                //add value from form to array key - question number
+                $answers[$id] = $newAnswer->getValue();
 
-            //add to existing values - new ones;
-            $session->set('answers' ,$answers);
+                //add to existing values - new ones;
+                $session->set('answers' ,$answers);
+
+                //if logged - save value into db, with date of test
+            } else {
+
+                //get test entity with id from session in DB
+                $testId = $session->get('test');
+                $repoTest = $entityManager->getRepository("AppBundle:Test");
+                $newTest = $repoTest->find($testId);
+
+                //set test parameters
+                $newAnswer->setTest($newTest);
+                $newAnswer->setQuestion($question);
+
+                //prepare and save values into db
+                $entityManager->persist($newAnswer);
+                $entityManager->persist($newTest);
+                $entityManager->flush();
+
+            }
         }
-
 
 
         return $this->render("AppBundle:Question:show_question.html.twig", [
@@ -55,11 +79,28 @@ class QuestionController extends Controller
      */
 
     public function resultAction(SessionInterface $session) {
-        $allAnswers = $session->get('answers');
 
-        $session->invalidate('answers');
+        //check if user is logged
+        $user = $this->getUser();
 
-        return $this->render('AppBundle:Answer:show_result.html.twig', ['answers' => $allAnswers ]);
+        //if no user
+        if($user === null) {
+
+            //get session with results
+            $allAnswers = $session->get('answers');
+
+            //clear session
+            $session->invalidate('answers');
+
+            return $this->render('AppBundle:Answer:show_result.html.twig', ['answers' => $allAnswers ]);
+        }
+
+        //if user is logged
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository("AppBundle:Answer");
+
+
 
     }
 

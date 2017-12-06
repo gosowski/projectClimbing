@@ -34,7 +34,7 @@ class Test
     private $user;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="date", type="date")
      */
@@ -51,29 +51,6 @@ class Test
         return $this->id;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Test
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
     /**
      * Constructor
      */
@@ -114,5 +91,29 @@ class Test
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Test
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
