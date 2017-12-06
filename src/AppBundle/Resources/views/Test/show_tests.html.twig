@@ -13,7 +13,7 @@
         {% set counter = 1 %}
         {% for test in tests %}
             <tr>
-                <td>{{ counter }}</td>
+                <td>Test #{{ counter }}</td>
                 <td>{{ test.date|date("Y.m.d") }}</td>
                 <td><a class="btn btn-outline-info btn-sm" href="/result/">Zobacz</a></td>
             </tr>

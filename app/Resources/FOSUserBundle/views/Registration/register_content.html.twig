@@ -2,7 +2,7 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-<div class="form-group col-6" id="fos_user_registration_form">
+<div class="form-group col-6 mt-5" id="fos_user_registration_form">
 
     {{ form_label(form.email) }}:
     {{ form_widget(form.email, { 'attr': {'class': 'form-control' } }) }}
