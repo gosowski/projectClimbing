@@ -83,6 +83,8 @@ class QuestionController extends Controller
         //check if user is logged
         $user = $this->getUser();
 
+        $testId = $session->get('test');
+
         //if no user
         if($user === null) {
 
@@ -98,10 +100,13 @@ class QuestionController extends Controller
         //if user is logged
 
         $entityManager = $this->getDoctrine()->getManager();
+        $repoTest = $entityManager->getRepository("AppBundle:Test");
+        $currentTest = $repoTest->find($testId);
+
         $repository = $entityManager->getRepository("AppBundle:Answer");
+        $allAnswers = $repository->findByTest($currentTest);
 
-
-
+        return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers ]);
     }
 
     /**

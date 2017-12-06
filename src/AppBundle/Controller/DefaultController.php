@@ -42,6 +42,5 @@ class DefaultController extends Controller
             $session->set('test', $newTest->getId());
         }
         return $this->redirectToRoute("app_question_start");
-//        return $this->redirect($this->generateUrl('/question/1/'));
     }
 }

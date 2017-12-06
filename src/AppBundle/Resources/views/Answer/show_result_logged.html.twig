@@ -1,0 +1,9 @@
+{% extends "default/index.html.twig" %}
+
+{% block content %}
+    <ul>
+        {% for answer in answers %}
+            <li><a href="/singleQuestion/{{ answer.question.id }}/">Pytanie numer: {{ answer.question.id }}</a> --- {{ answer.value }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
