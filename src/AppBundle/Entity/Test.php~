@@ -36,14 +36,14 @@ class Test
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true);
+     * @ORM\Column(name="description", type="string");
      */
     private $description;
 
@@ -67,7 +67,6 @@ class Test
      * @ORM\Column(name="strength", type="integer", nullable=true)
      */
     private $strength;
-
 
     /**
      * Get id
@@ -242,27 +241,33 @@ class Test
         return $this->tactic;
     }
 
+
     /**
-     * Set strenght
+     * Set strength
      *
-     * @param integer $strenght
+     * @param integer $strength
      *
      * @return Test
      */
-    public function setStrenght($strenght)
+    public function setStrength($strength)
     {
-        $this->strenght = $strenght;
+        $this->strength = $strength;
 
         return $this;
     }
 
     /**
-     * Get strenght
+     * Get strength
      *
      * @return integer
      */
-    public function getStrenght()
+    public function getStrength()
     {
-        return $this->strenght;
+        return $this->strength;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
     }
 }

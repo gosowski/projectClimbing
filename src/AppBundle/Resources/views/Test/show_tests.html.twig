@@ -18,7 +18,7 @@
         {% for test in tests %}
             <tr>
                 <td>Test #{{ counter }}</td>
-                <td>{{ test.date|date("Y.m.d") }}</td> {# H:i:s #}
+                <td>{{ test.date|date("Y.m.d H:i:s") }}</td>
                 <td>{{ test.description }}</td>
                 <td>{{ test.psyche }}</td>
                 <td>{{ test.tactic }}</td>

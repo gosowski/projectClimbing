@@ -67,7 +67,6 @@ class QuestionController extends Controller
             }
         }
 
-
         return $this->render("AppBundle:Question:show_question.html.twig", [
             'question' => $question,
             'id' => $id,
@@ -142,6 +141,5 @@ class QuestionController extends Controller
 
         return $newForm;
     }
-
 
 }
