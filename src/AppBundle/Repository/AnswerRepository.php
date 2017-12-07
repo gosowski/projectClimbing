@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class AnswerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function loadQuestionAsc($em, $test) {
+        $query = $em->createQuery(
+            'SELECT answer FROM AppBundle:Answer answer WHERE answer.test = :test ORDER BY answer.question ASC'
+        )->setParameter("test", $test);
+        return $query->execute();
+    }
 }

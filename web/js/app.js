@@ -23,7 +23,7 @@ $(function () {
        form.attr('action', newHref);
 
        if(questionId === 30) {
-           form.attr('action', '/result/');
+           form.attr('action', '/updateTest/');
        }
 
     });

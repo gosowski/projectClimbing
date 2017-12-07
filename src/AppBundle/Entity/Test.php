@@ -40,6 +40,33 @@ class Test
      */
     private $date;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true);
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="psyche", type="integer", nullable=true)
+     */
+    private $psyche;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tactic", type="integer", nullable=true)
+     */
+    private $tactic;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="strength", type="integer", nullable=true)
+     */
+    private $strength;
 
     /**
      * Get id
@@ -141,4 +168,124 @@ class Test
         return $this->date;
     }
 
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Test
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set psyche
+     *
+     * @param integer $psyche
+     *
+     * @return Test
+     */
+    public function setPsyche($psyche)
+    {
+        $this->psyche = $psyche;
+
+        return $this;
+    }
+
+    /**
+     * Get psyche
+     *
+     * @return integer
+     */
+    public function getPsyche()
+    {
+        return $this->psyche;
+    }
+
+    /**
+     * Set tactic
+     *
+     * @param integer $tactic
+     *
+     * @return Test
+     */
+    public function setTactic($tactic)
+    {
+        $this->tactic = $tactic;
+
+        return $this;
+    }
+
+    /**
+     * Get tactic
+     *
+     * @return integer
+     */
+    public function getTactic()
+    {
+        return $this->tactic;
+    }
+
+    /**
+     * Set strenght
+     *
+     * @param integer $strenght
+     *
+     * @return Test
+     */
+    public function setStrenght($strenght)
+    {
+        $this->strenght = $strenght;
+
+        return $this;
+    }
+
+    /**
+     * Get strenght
+     *
+     * @return integer
+     */
+    public function getStrenght()
+    {
+        return $this->strenght;
+    }
+
+    /**
+     * Set strength
+     *
+     * @param integer $strength
+     *
+     * @return Test
+     */
+    public function setStrength($strength)
+    {
+        $this->strength = $strength;
+
+        return $this;
+    }
+
+    /**
+     * Get strength
+     *
+     * @return integer
+     */
+    public function getStrength()
+    {
+        return $this->strength;
+    }
 }

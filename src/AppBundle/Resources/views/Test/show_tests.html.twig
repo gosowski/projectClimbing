@@ -6,6 +6,10 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Data przeprowadzania</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Psychika</th>
+            <th scope="col">Technika i taktyka</th>
+            <th scope="col">Siła fizyczna</th>
             <th scope="col">Link</th>
         </tr>
         </thead>
@@ -14,7 +18,11 @@
         {% for test in tests %}
             <tr>
                 <td>Test #{{ counter }}</td>
-                <td>{{ test.date|date("Y.m.d") }}</td>
+                <td>{{ test.date|date("Y.m.d") }}</td> {# H:i:s #}
+                <td>{{ test.description }}</td>
+                <td>{{ test.psyche }}</td>
+                <td>{{ test.tactic }}</td>
+                <td>{{ test.strength }}</td>
                 <td><a class="btn btn-outline-info btn-sm" href="/result/">Zobacz</a></td>
             </tr>
             {% set counter = counter+1 %}
