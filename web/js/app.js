@@ -24,6 +24,7 @@ $(function () {
 
        if(questionId === 30) {
            form.attr('action', '/updateTest/');
+           form.attr('method', "GET");
        }
 
     });

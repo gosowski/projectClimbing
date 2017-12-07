@@ -43,7 +43,7 @@ class Test
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true);
+     * @ORM\Column(name="description", type="string");
      */
     private $description;
 
@@ -241,29 +241,6 @@ class Test
         return $this->tactic;
     }
 
-    /**
-     * Set strenght
-     *
-     * @param integer $strenght
-     *
-     * @return Test
-     */
-    public function setStrenght($strenght)
-    {
-        $this->strenght = $strenght;
-
-        return $this;
-    }
-
-    /**
-     * Get strenght
-     *
-     * @return integer
-     */
-    public function getStrenght()
-    {
-        return $this->strenght;
-    }
 
     /**
      * Set strength
@@ -287,5 +264,10 @@ class Test
     public function getStrength()
     {
         return $this->strength;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
     }
 }

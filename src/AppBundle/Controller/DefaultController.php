@@ -34,6 +34,7 @@ class DefaultController extends Controller
 
             $newTest->setUser($user);
             $newTest->setDate($testDate);
+            $newTest->setDescription("");
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newTest);
