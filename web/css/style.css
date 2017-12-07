@@ -1,0 +1,15 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+}
+
+.question {
+    min-height: 110px;
+}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container" id="content">
+    <div class="container">
         <div class="row my-5" id="legend">
             <div class="col-lg-12 text-center">
 
@@ -17,12 +17,12 @@
                     <strong>5</strong> = nigdy</p>
             </div>
         </div>
-        <div class="row my-5" id="questions">
+        <div class="row my-5">
             <div class="col-2">
 
             </div>
-            <div class="col-8 text-center">
-                <p>{{ question.text }}</p>
+            <div class="col-8 text-center question">
+                <h3>{{ question.text }}</h3>
             </div>
             <div class="col-2">
 
