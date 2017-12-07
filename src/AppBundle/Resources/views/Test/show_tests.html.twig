@@ -1,7 +1,7 @@
 {% extends "default/index.html.twig" %}
 
 {% block content %}
-    <table class="table table-hover table-sm text-center">
+    <table class="table table-hover table-sm text-center mainContent">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -23,7 +23,7 @@
                 <td>{{ test.psyche }}</td>
                 <td>{{ test.tactic }}</td>
                 <td>{{ test.strength }}</td>
-                <td><a class="btn btn-outline-info btn-sm" href="/singleTest/">Zobacz</a></td>
+                <td><a class="btn btn-outline-info btn-sm" href="/singleTest/{{ test.id }}">Zobacz</a></td>
             </tr>
             {% set counter = counter+1 %}
         {% endfor %}

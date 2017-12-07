@@ -1,22 +1,53 @@
 {% extends "default/index.html.twig" %}
 
 {% block content %}
-    <table class="table table-hover table-sm text-center">
-        <thead>
-        <tr>
-            <th scope="col">Numer pytania</th>
-            <th scope="col">Twoja ocena</th>
-            <th scope="col">Zobacz pytanie</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for key, value in answers %}
-            <tr>
-                <td>{{ key }}</td>
-                <td>{{ value }}</td>
-                <td><a class="btn btn-outline-info btn-sm" href="/singleQuestion/{{ key }}/">Zobacz</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+    {% set psycho = 0 %}
+    {% set tactic = 0 %}
+    {% set strength = 0 %}
+
+    {% for key, value in answers %}
+        {% if key < 10 %}
+            {% set psycho = psycho + value %}
+        {% elseif key > 10 and key < 21 %}
+            {% set tactic = tactic + value %}
+        {% else %}
+            {% set strength = strength + value %}
+        {% endif %}
+
+    {% endfor %}
+
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table table-hover table-sm text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Psychika</th>
+                    <th scope="col">Technika i taktyka</th>
+                    <th scope="col">Siła fizyczna</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ psycho }}</td>
+                    <td>{{ tactic }}</td>
+                    <td>{{ strength }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <p>Jeżeli wyniki uzyskane w każdym z obszarów różnią się od siebie o nie więcej niż
+            <strong>pięć</strong> punktów,
+                oznacza to, że Twoja triada sprawności znajduje się w równowadze.</p>
+            <p>Jeżeli jednak w którymś z obszarów jest znacznie mniej punktów niż w pozostałych dwóch, to jest
+            to Twoja najsłabsza strona, na której należy skoncentrować się podczas treningu.</p>
+        </div>
+        <div class="col-2"></div>
+    </div>
 {% endblock %}

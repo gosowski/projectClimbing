@@ -10,8 +10,6 @@ $(function () {
     } else if (questionId === 30) {
         nextBtn.removeClass("btn-outline-primary").addClass("btn-outline-success");
         nextBtn.text("Wynik");
-
-
     }
 
     //event for next button
@@ -38,7 +36,5 @@ $(function () {
 
         form.attr('action', newHref);
     });
-
-
 
 });

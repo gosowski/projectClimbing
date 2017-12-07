@@ -1,7 +1,12 @@
 {% extends "default/index.html.twig" %}
 
+{% block javascript %}
+    <script src="{{ asset('js/values.js') }}"></script>
+    <script src="{{ asset('js/fadeIn.js') }}"></script>
+{% endblock %}
+
 {% block content %}
-    <table class="table table-hover table-sm text-center">
+    <table class="table table-sm text-center mainContent">
         <thead>
         <tr>
             <th scope="col">Numer pytania</th>
@@ -13,7 +18,7 @@
     {% for answer in answers %}
         <tr>
             <td>{{ answer.question.id }}</td>
-            <td>{{ answer.value }}</td>
+            <td class="values">{{ answer.value }}</td>
             <td><a class="btn btn-outline-info btn-sm" href="/singleQuestion/{{ answer.question.id }}/">Zobacz</a></td>
         </tr>
     {% endfor %}

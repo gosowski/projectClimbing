@@ -42,7 +42,7 @@ class QuestionController extends Controller
                 $answers = $session->get('answers',[]);
 
                 //add value from form to array key - question number
-                $answers[$id] = $newAnswer->getValue();
+                $answers[$id-1] = $newAnswer->getValue();
 
                 //add to existing values - new ones;
                 $session->set('answers' ,$answers);
@@ -55,9 +55,11 @@ class QuestionController extends Controller
                 $repoTest = $entityManager->getRepository("AppBundle:Test");
                 $newTest = $repoTest->find($testId);
 
+                $prevQuestion = $repository->find($id-1);
+
                 //set test parameters
                 $newAnswer->setTest($newTest);
-                $newAnswer->setQuestion($question);
+                $newAnswer->setQuestion($prevQuestion);
 
                 //prepare and save values into db
                 $entityManager->persist($newAnswer);

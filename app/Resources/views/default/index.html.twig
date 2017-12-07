@@ -1,5 +1,9 @@
 {% extends  "::base.html.twig" %}
 
+{% block javascript %}
+    <script src="{{ asset('js/fadeIn.js') }}"></script>
+{% endblock %}
+
 {% block nav %}
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="/">
@@ -28,26 +32,43 @@
 
 {% block content %}
 
-    <div class="container">
+    <div class="container mainContent">
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-2"></div>
+            <div class="col-8 text-center">
                 <h1 class="mt-5">Test samooceny</h1>
-                <p class="lead">Odpowiedz na każde pytanie, wybierając odpowiednią liczbę. Aby wyniki były jak
+
+                <div class="text-justify mt-3">Odpowiedz na każde pytanie, wybierając odpowiednią liczbę. Aby wyniki były jak
                     najbardziej
                     dokładne, każde pytanie oceń na podstawie najświeższych doświadczeń. Zrób chwilę przerwy i
                     przypomnij sobie
                     swoje ostatnie wspinaczki. Nie analizuj pytań, nie staraj się odgadywać ich intencji - na to
                     przyjdzie czas
-                    po ukończeniu testu.</p>
-                <p><strong>0</strong> = prawie zawsze
+                    po ukończeniu testu.</div>
+
+                <div class="my-5"><strong>0</strong> = prawie zawsze
                     <strong>1</strong> = często
                     <strong>2</strong> = przez połowę czasu
                     <strong>3</strong> = czasami
                     <strong>4</strong> = rzadko
-                    <strong>5</strong> = nigdy</p>
+                    <strong>5</strong> = nigdy</div>
             </div>
+            <div class="col-2"></div>
         </div>
-        <div class="row">
+        <div class="row text-justify">
+            <div class="col-2"></div>
+            <div class="col-8">
+                {% if is_granted("ROLE_USER") %}
+                    Każdy test posiada swoje podsumownie - dostępne w zakładce testy.
+                    Po wybraniu testu wyświetlona zostanie lista z każdym pytaniem i Twoją odpowiedzią.
+                    Każdy wiersz z czerwonym tłem identyfikuje konkretny element, który blokuje Ci drogę
+                    do lepszego wspinania.
+                    Porady dotyczące problemu są dostępne po kliknięciu na przycisk "zobacz".
+                {% endif %}
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
             <div class="col-lg-12 text-center">
                 <a href="/testStart/" class="btn btn-outline-primary">Rozpocznij</a>
             </div>

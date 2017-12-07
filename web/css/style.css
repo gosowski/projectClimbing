@@ -1,5 +1,9 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
+    background-image: url("../akg.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 button {
@@ -12,4 +16,8 @@ button {
 
 .question {
     min-height: 110px;
+}
+
+.mainContent {
+    display: none;
 }
