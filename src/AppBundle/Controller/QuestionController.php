@@ -106,13 +106,9 @@ class QuestionController extends Controller
         //if user is logged
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repoTest = $entityManager->getRepository("AppBundle:Test");
-        $currentTest = $repoTest->find($testId);
 
         $repository = $entityManager->getRepository("AppBundle:Answer");
-//        $allAnswers = $repository->findByTest($currentTest);
         $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
-
 
         return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers ]);
     }

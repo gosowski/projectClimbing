@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class TestRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function loadAllTestsByDate($em) {
+        $query = $em->createQuery(
+            'SELECT test FROM AppBundle:Test test ORDER BY test.date DESC'
+        );
+        return $query->getResult();
+    }
 }
