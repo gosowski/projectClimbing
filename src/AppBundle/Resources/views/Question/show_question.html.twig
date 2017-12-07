@@ -1,5 +1,9 @@
 {% extends "default/index.html.twig" %}
 
+{% block javascript %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="container" id="content">
         <div class="row my-5" id="legend">
@@ -63,4 +67,5 @@
     <script>
         var questionId = {{ id }};
     </script>
+
 {% endblock %}

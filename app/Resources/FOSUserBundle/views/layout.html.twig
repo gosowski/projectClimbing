@@ -1,5 +1,9 @@
 {% extends ":default:index.html.twig" %}
 
+{% block javascript %}
+    <script src="{{ asset('js/fadeIn.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
     <div class="container">
@@ -18,7 +22,7 @@
                     {% endfor %}
                 {% endif %}
 
-                <div>
+                <div class="content" style="display: none;">
                     {% block fos_user_content %}
                     {% endblock fos_user_content %}
                 </div>
