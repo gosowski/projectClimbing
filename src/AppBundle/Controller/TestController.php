@@ -29,6 +29,25 @@ class TestController extends Controller
     }
 
     /**
+     * @Route("/singleTest/")
+     */
+    public function singleTestAction(SessionInterface $session) {
+
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $testId = $session->get('test');
+        $repository = $entityManager->getRepository("AppBundle:Answer");
+        $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
+
+        return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers ]);
+    }
+
+
+    /**
      * @Route("/updateTest/")
      */
     public function updateTest(SessionInterface $session, Request $request) {

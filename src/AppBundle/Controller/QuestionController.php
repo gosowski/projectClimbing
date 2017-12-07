@@ -102,16 +102,9 @@ class QuestionController extends Controller
                 'questions' => $allQuestions]);
         }
 
-        //if user is logged
-
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $repository = $entityManager->getRepository("AppBundle:Answer");
-        $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
-
-//        return $this->redirectToRoute('app_test_showtests');
-        return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers ]);
+        return $this->redirectToRoute('app_test_showtests');
     }
+
 
     /**
      * @Route("/singleQuestion/{id}/")
