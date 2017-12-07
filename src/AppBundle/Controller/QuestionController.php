@@ -109,6 +109,7 @@ class QuestionController extends Controller
         $repository = $entityManager->getRepository("AppBundle:Answer");
         $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
 
+//        return $this->redirectToRoute('app_test_showtests');
         return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers ]);
     }
 

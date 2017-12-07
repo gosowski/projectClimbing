@@ -91,7 +91,7 @@ class TestController extends Controller
 
         $newForm = $this->createFormBuilder($obj)
                 ->setMethod("POST")
-                ->add('description', TextType::class, ['required' => false])
+                ->add('description', TextType::class, ['required' => false, 'attr' => ['value' => "--"]])
                 ->add('save', SubmitType::class, ['label' => 'Wyślij'])
                 ->getForm();
         return $newForm;
