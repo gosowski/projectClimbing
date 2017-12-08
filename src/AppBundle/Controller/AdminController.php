@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use	Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin")
@@ -15,7 +16,9 @@ class AdminController extends Controller
      * @Route("/")
      */
     public function adminAction() {
-        return $this->render("AppBundle:Admin:mainAdmin.html.twig");
+        $user = $this->getUser();
+
+        return $this->render("AppBundle:Admin:mainAdmin.html.twig", ['user' => $user]);
     }
 
     /**
