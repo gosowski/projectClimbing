@@ -14,17 +14,18 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-
         return $this->render("default/index.html.twig");
     }
 
     /**
      * @Route("/testStart/")
      */
-    public function startTestAction(SessionInterface $session) {
+    public function startTestAction(SessionInterface $session)
+    {
 
         $user = $this->getUser();
-        if($user){
+
+        if ($user) {
 
             //get date of taking test
             $testDate = new \DateTime($time = 'now');
@@ -45,10 +46,4 @@ class DefaultController extends Controller
         return $this->redirectToRoute("app_question_start");
     }
 
-    /**
-     * @Route("/admin/")
-     */
-    public function adminAction() {
-
-    }
 }

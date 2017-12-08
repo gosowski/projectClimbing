@@ -19,7 +19,7 @@ $(function () {
         var updateId = questionId+1;
         var newHref = "/question/"+updateId+"/";
        form.attr('action', newHref);
-        
+
     });
 
     //event for previous button

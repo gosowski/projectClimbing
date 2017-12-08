@@ -1,0 +1,31 @@
+{% extends "default/index.html.twig" %}
+
+    {% block content %}
+        <table class="table table-hover table-sm text-center mainContent">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Data</th>
+                <th scope="col">User</th>
+                <th scope="col">Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set counter = 0 %}
+            {% for test in tests %}
+                {% set counter = counter +1 %}
+                <tr>
+                    <td>{{ counter }}</td>
+                    <td>{{ test.id }}</td>
+                    <td>{{ test.date|date("Y.m.d H:i:s") }}</td>
+                    <td>{{ test.user }}</td>
+                    <td>
+                        <a class="btn btn-outline-warning btn-sm" href="update/{{ test.id }}/">Edycja</a>
+                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ test.id }}/">Usuń</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}

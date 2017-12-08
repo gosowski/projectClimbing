@@ -1,0 +1,31 @@
+{% extends "default/index.html.twig" %}
+
+    {% block content %}
+        <table class="table table-hover table-sm text-center mainContent">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nazwa użytkownika</th>
+                <th scope="col">Adres e-mail</th>
+                <th scope="col">Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set counter = 0 %}
+            {% for user in users %}
+                {% set counter = counter +1 %}
+                <tr>
+                    <td>{{ counter }}</td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a class="btn btn-outline-warning btn-sm" href="update/{{ user.id }}/">Edycja</a>
+                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ user.id }}/">Usuń</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}

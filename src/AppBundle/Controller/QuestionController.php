@@ -91,8 +91,6 @@ class QuestionController extends Controller
         //check if user is logged
         $user = $this->getUser();
 
-        $testId = $session->get('test');
-
         //if no user logged
         if($user === null) {
             $entityManager = $this->getDoctrine()->getManager();

@@ -10,7 +10,14 @@
             Trening wspinaczkowy
         </a>
         {% block links %}
-            {% if is_granted("ROLE_USER") %}
+            {% if is_granted("ROLE_ADMIN") %}
+                <form class="form-inline">
+                    <a class="btn btn-outline-success mr-2" href="/admin/">Panel Administratora</a>
+                    <a class="btn btn-outline-info mr-2" href="/showTests/">Testy</a>
+                    <a class="btn align-middle btn-outline-primary" href="/logout ">Wyloguj</a>
+                </form>
+
+            {% elseif is_granted("ROLE_USER") %}
                 <form class="form-inline">
                     <a class="btn btn-outline-info mr-2" href="/showTests/">Testy</a>
                     <a class="btn btn-outline-success mr-2" href="/profile/">Profil</a>

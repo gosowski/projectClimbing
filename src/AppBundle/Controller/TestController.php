@@ -25,7 +25,7 @@ class TestController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("AppBundle:Test");
 
-        $allTests = $repository->loadAllTestsByDate($entityManager);
+        $allTests = $repository->loadAllTestsByDate($entityManager, $user);
         return $this->render('AppBundle:Test:show_tests.html.twig', ['tests' => $allTests]);
     }
 

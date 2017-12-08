@@ -1,0 +1,29 @@
+{% extends 'default/index.html.twig' %}
+
+{%  block content %}
+    <div class="mainContent">
+        <div class="row">
+            <div class="col-4">
+                {#<div>#}
+                    {#{% block fos_user_content %}#}
+                        {#{% include "Profile:show_content.html.twig" %}#}
+                    {#{% endblock fos_user_content %}#}
+                {#</div>#}
+            </div>
+            <div class="col-4">
+                <div class="col-2">
+                    <div class="col my=2">
+                        <a class="btn btn-outline-warning" href="users/">Użytkownicy</a>
+                    </div>
+                    <div class="col my=2">
+                        <a class="btn btn-outline-warning" href="tests/">Testy</a>
+                    </div>
+                    <div class="col my=2">
+                        <a class="btn btn-outline-warning" href="questions/">Pytania</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+{% endblock %}
