@@ -19,12 +19,7 @@ $(function () {
         var updateId = questionId+1;
         var newHref = "/question/"+updateId+"/";
        form.attr('action', newHref);
-
-       if(questionId === 30) {
-           form.attr('action', '/updateTest/');
-           form.attr('method', "GET");
-       }
-
+        
     });
 
     //event for previous button

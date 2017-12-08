@@ -44,4 +44,11 @@ class DefaultController extends Controller
         }
         return $this->redirectToRoute("app_question_start");
     }
+
+    /**
+     * @Route("/admin/")
+     */
+    public function adminAction() {
+
+    }
 }

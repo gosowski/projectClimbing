@@ -47,6 +47,10 @@ class QuestionController extends Controller
                 //add to existing values - new ones;
                 $session->set('answers' ,$answers);
 
+                if($id == 31) {
+                    return $this->redirectToRoute('app_question_result');
+                }
+
                 //if logged - save value into db, with date of test
             } else {
 
@@ -66,6 +70,9 @@ class QuestionController extends Controller
                 $entityManager->persist($newTest);
                 $entityManager->flush();
 
+                if($id == 31) {
+                    return $this->redirectToRoute('app_test_updatetest');
+                }
             }
         }
 
