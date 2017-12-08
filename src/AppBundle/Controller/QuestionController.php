@@ -111,13 +111,17 @@ class QuestionController extends Controller
     /**
      * @Route("/singleQuestion/{id}/")
      */
-    public function showSingleAction($id) {
+    public function showSingleAction($id, Request $request) {
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("AppBundle:Question");
 
         $singleQuestion = $repository->find($id);
 
-        return $this->render("AppBundle:Answer:show_single_question.html.twig", ['question' => $singleQuestion]);
+        $referer = $request->headers->get('referer');
+
+        return $this->render("AppBundle:Answer:show_single_question.html.twig", [
+            'question' => $singleQuestion,
+            'referer' => $referer]);
     }
 
     protected function generateForm($obj, $method = "POST") {
