@@ -56,4 +56,19 @@ class AdminController extends Controller
 
         return $this->render('AppBundle:Admin:adminQuestions.html.twig', ['questions' => $allQuestions]);
     }
+
+    /**
+     * @Route("/tests/delete/{id}/")
+     */
+    public function deleteAction($id) {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository("AppBundle:Test");
+
+        $testToRemove = $repository->find($id);
+        $entityManager->remove($testToRemove);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_tests');
+    }
 }

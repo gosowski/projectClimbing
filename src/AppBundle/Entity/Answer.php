@@ -29,7 +29,7 @@ class Answer
 
     /**
      * @ORM\ManyToOne(targetEntity="Test", inversedBy="answers")
-     * @ORM\JoinColumn(name="test_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="test_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $test;
 
