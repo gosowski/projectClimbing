@@ -57,9 +57,7 @@ class TestController extends Controller
                 'pdf' => $pdf]);
 
             return new PdfResponse(
-                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-                'file.pdf'
-            );
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 'Test.pdf');
         } else {
             return $this->redirectToRoute('app_test_showtests');
         }
