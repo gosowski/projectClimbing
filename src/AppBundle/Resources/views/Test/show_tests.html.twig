@@ -10,6 +10,7 @@
             <th scope="col">Psychika</th>
             <th scope="col">Technika i taktyka</th>
             <th scope="col">Siła fizyczna</th>
+            <th scope="col">PDF</th>
             <th scope="col">Link</th>
         </tr>
         </thead>
@@ -23,7 +24,8 @@
                 <td>{{ test.psyche }}</td>
                 <td>{{ test.tactic }}</td>
                 <td>{{ test.strength }}</td>
-                <td><a class="btn btn-outline-info btn-sm" href="/singleTest/{{ test.id }}">Zobacz</a></td>
+                <td><a class="btn btn-outline-info btn-sm" href="/singleTest/{{ test.id }}/1/"><i class="far fa-file-pdf fa-lg"></i></a></td>
+                <td><a class="btn btn-outline-info btn-sm" href="/singleTest/{{ test.id }}/0/"><i class="fas fa-external-link-alt fa-lg"></i></a></td>
             </tr>
             {% set counter = counter+1 %}
         {% endfor %}

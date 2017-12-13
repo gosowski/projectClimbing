@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use	Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class TestController extends Controller
 {
@@ -26,13 +27,14 @@ class TestController extends Controller
         $repository = $entityManager->getRepository("AppBundle:Test");
 
         $allTests = $repository->loadAllTestsByDate($entityManager, $user);
+
         return $this->render('AppBundle:Test:show_tests.html.twig', ['tests' => $allTests]);
     }
 
     /**
-     * @Route("/singleTest/{testId}")
+     * @Route("/singleTest/{testId}/{pdf}/", defaults={"pdf" = 0})
      */
-    public function singleTestAction($testId) {
+    public function singleTestAction($testId, $pdf) {
 
         $user = $this->getUser();
 
@@ -45,7 +47,22 @@ class TestController extends Controller
         $repository = $entityManager->getRepository("AppBundle:Answer");
         $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
 
-        return $this->render('AppBundle:Answer:show_result_logged.html.twig', ['answers' => $allAnswers]);
+        if($pdf == 0) {
+            return $this->render('AppBundle:Answer:show_result_logged.html.twig', [
+                'answers' => $allAnswers,
+                'pdf' => $pdf]);
+        } elseif($pdf == 1) {
+            $html = $this->renderView('AppBundle:Answer:show_result_logged.html.twig', [
+                'answers' => $allAnswers,
+                'pdf' => $pdf]);
+
+            return new PdfResponse(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                'file.pdf'
+            );
+        } else {
+            return $this->redirectToRoute('app_test_showtests');
+        }
     }
 
 
@@ -107,6 +124,8 @@ class TestController extends Controller
 
         return $this->render("AppBundle:Test:test_desc.html.twig", ['form' => $newForm->createView()]);
     }
+
+
 
     protected function generateDescForm($obj) {
 
