@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use	Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class TestController extends Controller
 {
@@ -32,9 +31,9 @@ class TestController extends Controller
     }
 
     /**
-     * @Route("/singleTest/{testId}/{pdf}/", defaults={"pdf" = 0})
+     * @Route("/singleTest/{testId}/")
      */
-    public function singleTestAction($testId, $pdf) {
+    public function singleTestAction($testId) {
 
         $user = $this->getUser();
 
@@ -47,20 +46,9 @@ class TestController extends Controller
         $repository = $entityManager->getRepository("AppBundle:Answer");
         $allAnswers = $repository->loadQuestionAsc($entityManager, $testId);
 
-        if($pdf == 0) {
-            return $this->render('AppBundle:Answer:show_result_logged.html.twig', [
-                'answers' => $allAnswers,
-                'pdf' => $pdf]);
-        } elseif($pdf == 1) {
-            $html = $this->renderView('AppBundle:Answer:show_result_logged.html.twig', [
-                'answers' => $allAnswers,
-                'pdf' => $pdf]);
-
-            return new PdfResponse(
-                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 'Test.pdf');
-        } else {
-            return $this->redirectToRoute('app_test_showtests');
-        }
+        return $this->render('AppBundle:Answer:show_result_logged.html.twig', [
+            'answers' => $allAnswers,
+        ]);
     }
 
 
