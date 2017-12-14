@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79216a3d-d377-4fab-96c7-3152915d1ca1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/mainAdmin.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/mainAdmin.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,21 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1044">
-              <caret line="60" column="16" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+            <state relative-caret-position="744">
+              <caret line="96" column="8" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainAdmin.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/mainAdmin.html.twig">
+      <file leaf-file-name="adminUsers.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="108" lean-forward="false" selection-start-line="20" selection-start-column="108" selection-end-line="20" selection-end-column="108" />
+            <state relative-caret-position="432">
+              <caret line="24" column="134" lean-forward="false" selection-start-line="24" selection-start-column="134" selection-end-line="24" selection-end-column="134" />
               <folding />
             </state>
           </provider>
@@ -84,10 +85,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Answer/show_single_question.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/TestRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminTests.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminQuestions.html.twig" />
         <option value="$PROJECT_DIR$/web/css/style.css" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Answer.php" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
@@ -100,6 +99,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Test/show_tests.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/TestController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/mainAdmin.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" />
       </list>
     </option>
   </component>
@@ -241,12 +242,12 @@
       <workItem from="1512718328400" duration="18182000" />
       <workItem from="1512739116718" duration="1236000" />
       <workItem from="1513172921695" duration="9606000" />
-      <workItem from="1513251260481" duration="4216000" />
+      <workItem from="1513251260481" duration="5955000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120919000" />
+    <option name="totallyTimeSpent" value="122658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1365" y="-11" width="1368" height="780" extended-state="6" />
@@ -475,13 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -622,18 +616,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="60" column="16" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/mainAdmin.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="108" lean-forward="false" selection-start-line="20" selection-start-column="108" selection-end-line="20" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Admin/adminUsers.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="134" lean-forward="false" selection-start-line="24" selection-start-column="134" selection-end-line="24" selection-end-column="134" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="96" column="8" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
           <folding />
         </state>
       </provider>

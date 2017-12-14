@@ -60,15 +60,41 @@ class AdminController extends Controller
     /**
      * @Route("/tests/delete/{id}/")
      */
-    public function deleteAction($id) {
+    public function deleteTestAction($id) {
+
+        return $this->deleteFromDB("tests", $id);
+    }
+
+    /**
+     * @Route("/users/delete/{id}/")
+     */
+    public function deleteUserAction($id) {
+
+        return $this->deleteFromDB("users", $id);
+    }
+
+    /**
+     * @Route("/questions/delete/{id}/")
+     */
+    public function deleteQuestionAction($id) {
+
+        return $this->deleteFromDB("questions", $id);
+    }
+
+
+    protected function deleteFromDB($name, $id) {
+
+        $bundleName = ucfirst(rtrim($name, "s"));
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:Test");
+        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
 
-        $testToRemove = $repository->find($id);
-        $entityManager->remove($testToRemove);
-        $entityManager->flush();
+        $toRemove = $repository->find($id);
+        $entityManager->remove($toRemove);
+        $entityManager->flush($toRemove);
 
-        return $this->redirectToRoute('app_admin_tests');
+        return $this->redirectToRoute('app_admin_'.$name);
+        
     }
+
 }

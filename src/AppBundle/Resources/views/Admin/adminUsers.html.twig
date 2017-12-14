@@ -21,8 +21,8 @@
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        <a class="btn btn-outline-warning btn-sm" href="update/{{ user.id }}/">Edycja</a>
-                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ user.id }}/">Usuń</a>
+                        <a class="btn btn-outline-warning btn-sm" href="update/{{ user.id }}/"><i class="far fa-edit fa-sm"></i> Edycja</a>
+                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ user.id }}/"> <i class="far fa-trash-alt fa-sm"></i> Usuń</a>
                     </td>
                 </tr>
             {% endfor %}
