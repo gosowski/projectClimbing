@@ -13,16 +13,16 @@
             </thead>
             <tbody>
             {% set counter = 0 %}
-            {% for user in users %}
+            {% for item in items %}
                 {% set counter = counter +1 %}
                 <tr>
                     <td>{{ counter }}</td>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.email }}</td>
                     <td>
-                        <a class="btn btn-outline-warning btn-sm" href="update/{{ user.id }}/"><i class="far fa-edit fa-sm"></i> Edycja</a>
-                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ user.id }}/"> <i class="far fa-trash-alt fa-sm"></i> Usuń</a>
+                        <a class="btn btn-outline-warning btn-sm" href="update/{{ item.id }}/"><i class="far fa-edit fa-sm"></i> Edycja</a>
+                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ item.id }}/"> <i class="far fa-trash-alt fa-sm"></i> Usuń</a>
                     </td>
                 </tr>
             {% endfor %}

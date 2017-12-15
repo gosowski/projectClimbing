@@ -22,40 +22,13 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/users/")
+     * @Route("/{item}/")
      */
-    public function usersAction() {
-        $entityManager = $this->getDoctrine()->getManager();
-        $userRepo = $entityManager->getRepository("AppBundle:User");
+    public function usersAction($item) {
 
-        $allUsers = $userRepo->findAll();
-
-        return $this->render('AppBundle:Admin:adminUsers.html.twig', ['users' => $allUsers]);
+        return $this->loadAllFromDB($item);
     }
 
-    /**
-     * @Route("/tests/")
-     */
-    public function testsAction() {
-        $entityManager = $this->getDoctrine()->getManager();
-        $testRepo = $entityManager->getRepository("AppBundle:Test");
-
-        $allTests = $testRepo->findAll();
-
-        return $this->render('AppBundle:Admin:adminTests.html.twig', ['tests' => $allTests]);
-    }
-
-    /**
-     * @Route("/questions/")
-     */
-    public function questionsAction() {
-        $entityManager = $this->getDoctrine()->getManager();
-        $questionRepo = $entityManager->getRepository("AppBundle:Question");
-
-        $allQuestions = $questionRepo->findAll();
-
-        return $this->render('AppBundle:Admin:adminQuestions.html.twig', ['questions' => $allQuestions]);
-    }
 
     /**
      * @Route("/tests/delete/{id}/")
@@ -94,7 +67,19 @@ class AdminController extends Controller
         $entityManager->flush($toRemove);
 
         return $this->redirectToRoute('app_admin_'.$name);
-        
+
+    }
+
+    protected function loadAllFromDB($item) {
+
+        $bundleName = ucfirst(rtrim($item, "s"));
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
+
+        $allItems = $repository->findAll();
+
+        return $this->render("AppBundle:Admin:admin".$bundleName."s.html.twig", ['items' => $allItems]);
     }
 
 }
