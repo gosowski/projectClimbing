@@ -1,13 +1,21 @@
 {% extends "default/index.html.twig" %}
 
     {% block content %}
-        {{	form_start(form)	}}
-        <div>
-            {{	form_label(form.text)	}}
-            {{	form_widget(form.text)	}}
+        <div class="row main">
+            <div class="col-3"></div>
+            <div class="col-6 form-group">
+                {{	form_start(form)	}}
+                <div class="mt-5">
+                    {{	form_label(form.text)	}}
+                </div>
+                <div class="mt-3">
+                    {{	form_widget(form.text,  { 'attr': {'class': 'form-control' } })	}}
+                </div>
+                <div class="mt-3">
+                    {{	form_widget(form.save, {'attr': {'class': 'btn btn-outline-primary'}})	}}
+                </div>
+                {{	form_end(form)	}}
+            </div>
+            <div class="col-3"></div>
         </div>
-        <div>
-            {{	form_widget(form.save)	}}
-        </div>
-        {{	form_end(form)	}}
     {% endblock %}

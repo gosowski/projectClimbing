@@ -63,30 +63,22 @@ class AdminController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("AppBundle:Question");
-
-
         $toModify = $repository->find($id);
 
         $newForm = $this->generateQuestionForm($toModify);
-
         $newForm->handleRequest($request);
 
-        if($newForm->isSubmitted()) {
+        if($newForm->isSubmitted() && $newForm->isValid()) {
 
             $newText = $newForm->getData();
             $entityManager->persist($newText);
             $entityManager->flush($newText);
 
             return $this->redirectToRoute('app_admin_users', ['item' => "questions"]);
-
         }
 
         return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
-
-
-
     }
-
 
     protected function deleteFromDB($name, $id) {
 
