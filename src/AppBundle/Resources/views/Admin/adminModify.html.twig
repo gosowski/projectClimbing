@@ -1,0 +1,13 @@
+{% extends "default/index.html.twig" %}
+
+    {% block content %}
+        {{	form_start(form)	}}
+        <div>
+            {{	form_label(form.text)	}}
+            {{	form_widget(form.text)	}}
+        </div>
+        <div>
+            {{	form_widget(form.save)	}}
+        </div>
+        {{	form_end(form)	}}
+    {% endblock %}
