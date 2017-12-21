@@ -15,10 +15,10 @@
             {% for item in items %}
                 {% set counter = counter +1 %}
                 <tr>
-                    <td>{{ counter }}</td>
-                    <td>{{ item.id }}</td>
+                    <td class="nums">{{ counter }}</td>
+                    <td class="nums">{{ item.id }}</td>
                     <td>{{ item.text }}</td>
-                    <td>
+                    <td class="action">
                         <a class="btn btn-outline-warning btn-sm" href="update/{{ item.id }}/">Edycja</a>
                         <a class="btn btn-outline-danger btn-sm" href="delete/{{ item.id }}/">Usuń</a>
                     </td>

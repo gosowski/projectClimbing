@@ -21,3 +21,11 @@ button {
 .mainContent {
     display: none;
 }
+
+.nums {
+    width: 27px;
+}
+
+.action {
+    width: 126px;
+}
