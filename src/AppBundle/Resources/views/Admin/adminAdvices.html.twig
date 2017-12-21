@@ -1,0 +1,29 @@
+{% extends "default/index.html.twig" %}
+
+    {% block content %}
+        <table class="table table-hover table-sm text-center mainContent">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Tekst</th>
+                <th scope="col">Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set counter = 0 %}
+            {% for item in items %}
+                {% set counter = counter +1 %}
+                <tr>
+                    <td>{{ counter }}</td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.text }}</td>
+                    <td>
+                        <a class="btn btn-outline-warning btn-sm" href="update/{{ item.id }}/">Edycja</a>
+                        <a class="btn btn-outline-danger btn-sm" href="delete/{{ item.id }}/">Usuń</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
