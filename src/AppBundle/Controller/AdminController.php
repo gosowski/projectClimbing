@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use function Sodium\add;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -57,12 +59,14 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/questions/update/{id}/")
+     * @Route("/{topics}/update/{id}/")
      */
-    public function updateQuestionAction($id, Request $request) {
+    public function updateQuestionAction($id, Request $request, $topics) {
+
+        $bundleName = ucfirst(rtrim($topics, "s"));
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:Question");
+        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
         $toModify = $repository->find($id);
 
         $newForm = $this->generateQuestionForm($toModify);
@@ -74,10 +78,37 @@ class AdminController extends Controller
             $entityManager->persist($newText);
             $entityManager->flush($newText);
 
-            return $this->redirectToRoute('app_admin_users', ['item' => "questions"]);
+            if($topics == 'questions'){
+                return $this->redirectToRoute('app_admin_users', ['item' => "questions"]);
+            } elseif($topics == 'advices') {
+                return $this->redirectToRoute('app_admin_users', ['item' => "advices"]);
+
+            }
         }
 
         return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
+    }
+
+    /**
+     * @Route("/advices/update/{id}/")
+     */
+    public function updateAdviceAction($id, Request $request) {
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $repository = $entityManager->getRepository("AppBundle:Advice");
+        $toModify = $repository->find($id);
+
+        $newForm = $this->generateAdviceForm($toModify);
+        $newForm->handleRequest($request);
+
+        if($newForm->isSubmitted() && $newForm->isValid()) {
+            $newText = $newForm->getData();
+            dump($newText);
+
+        }
+
+        return $this->render("AppBundle:Admin:adminModify.html.twig", ['form' => $newForm->createView()]);
     }
 
     protected function deleteFromDB($name, $id) {
@@ -111,7 +142,7 @@ class AdminController extends Controller
 
         $newForm = $this->createFormBuilder($obj)
                 ->setMethod("POST")
-                ->add("text", TextType::class, ["label" => "Tekst pytania: "])
+                ->add("text", TextType::class, ["label" => "Tekst: "])
                 ->add("save", SubmitType::class, ['label' => 'Modyfikuj'])
                 ->getForm();
 
