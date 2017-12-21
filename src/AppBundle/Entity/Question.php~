@@ -34,6 +34,12 @@ class Question
      */
     private $text;
 
+    /**
+     * One Question has One Advice
+     * @ORM\OneToOne(targetEntity="Advice", mappedBy="question")
+     */
+    private $advice;
+
 
     /**
      * Get id

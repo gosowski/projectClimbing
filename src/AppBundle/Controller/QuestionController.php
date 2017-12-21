@@ -118,14 +118,18 @@ class QuestionController extends Controller
      */
     public function showSingleAction($id, Request $request) {
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:Question");
 
+        $repository = $entityManager->getRepository("AppBundle:Question");
         $singleQuestion = $repository->find($id);
+
+        $adviceRepo = $entityManager->getRepository("AppBundle:Advice");
+        $singleAdvice = $adviceRepo->find($id);
 
         $referer = $request->headers->get('referer');
 
         return $this->render("AppBundle:Answer:show_single_question.html.twig", [
             'question' => $singleQuestion,
+            'advice' => $singleAdvice,
             'referer' => $referer]);
     }
 

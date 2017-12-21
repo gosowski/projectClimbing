@@ -69,28 +69,5 @@ class Advice
     {
         return $this->text;
     }
-
-    /**
-     * Set question
-     *
-     * @param \AppBundle\Entity\Question $question
-     *
-     * @return Advice
-     */
-    public function setQuestion(\AppBundle\Entity\Question $question = null)
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    /**
-     * Get question
-     *
-     * @return \AppBundle\Entity\Question
-     */
-    public function getQuestion()
-    {
-        return $this->question;
-    }
 }
+

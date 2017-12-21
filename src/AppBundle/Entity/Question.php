@@ -34,6 +34,12 @@ class Question
      */
     private $text;
 
+    /**
+     * One Question has One Advice
+     * @ORM\OneToOne(targetEntity="Advice", mappedBy="question")
+     */
+    private $advice;
+
 
     /**
      * Get id
@@ -108,5 +114,29 @@ class Question
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Set advice
+     *
+     * @param \AppBundle\Entity\Advice $advice
+     *
+     * @return Question
+     */
+    public function setAdvice(\AppBundle\Entity\Advice $advice = null)
+    {
+        $this->advice = $advice;
+
+        return $this;
+    }
+
+    /**
+     * Get advice
+     *
+     * @return \AppBundle\Entity\Advice
+     */
+    public function getAdvice()
+    {
+        return $this->advice;
     }
 }
