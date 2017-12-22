@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @Route("/admin")
  */
-
 class AdminController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function adminAction() {
+    public function adminAction()
+    {
         $user = $this->getUser();
 
         return $this->render("AppBundle:Admin:mainAdmin.html.twig", ['user' => $user]);
@@ -27,7 +27,8 @@ class AdminController extends Controller
     /**
      * @Route("/{item}/")
      */
-    public function usersAction($item) {
+    public function usersAction($item)
+    {
 
         return $this->loadAllFromDB($item);
     }
@@ -35,7 +36,8 @@ class AdminController extends Controller
     /**
      * @Route("/{topics}/delete/{id}/")
      */
-    public function deleteTopicAction($topics, $id, Request $request) {
+    public function deleteTopicAction($topics, $id, Request $request)
+    {
 
         return $this->deleteFromDB($topics, $id, $request);
     }
@@ -43,71 +45,106 @@ class AdminController extends Controller
     /**
      * @Route("/{topics}/update/{id}/")
      */
-    public function updateQuestionAction($id, Request $request, $topics) {
+    public function updateQuestionAction($id, Request $request, $topics)
+    {
 
         $bundleName = ucfirst(rtrim($topics, "s"));
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
+        $repository = $entityManager->getRepository("AppBundle:" . $bundleName);
         $toModify = $repository->find($id);
 
         $newForm = $this->generateQuestionForm($toModify);
         $newForm->handleRequest($request);
 
-        if($newForm->isSubmitted() && $newForm->isValid()) {
+        if ($newForm->isSubmitted() && $newForm->isValid()) {
 
-            $newText = $newForm->getData();
-            $entityManager->persist($newText);
-            $entityManager->flush($newText);
-
-            if($topics == 'questions'){
-                return $this->redirectToRoute('app_admin_users', ['item' => "questions"]);
-            } elseif($topics == 'advices') {
-                return $this->redirectToRoute('app_admin_users', ['item' => "advices"]);
-
-            }
+           return $this->newQuestionAdvice($newForm, $topics);
         }
 
         return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
     }
 
-    protected function deleteFromDB($name, $id, $request) {
+    /**
+     * @Route("/new/{topics}/")
+     */
+    public function newQuestionAction($topics, Request $request)
+    {
+
+        $bundleName = ucfirst(rtrim($topics, "s"));
+        $className = "AppBundle\Entity\\$bundleName";
+        $obj = new $className();
+
+        $newForm = $this->generateQuestionForm($obj);
+        $newForm->handleRequest($request);
+
+        if ($newForm->isSubmitted() && $newForm->isValid()) {
+
+           return $this->newQuestionAdvice($newForm, $topics);
+        }
+
+        return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
+    }
+
+    protected function deleteFromDB($name, $id, $request)
+    {
 
         $bundleName = ucfirst(rtrim($name, "s"));
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
+        $repository = $entityManager->getRepository("AppBundle:" . $bundleName);
 
         $toRemove = $repository->find($id);
         $entityManager->remove($toRemove);
         $entityManager->flush($toRemove);
 
+        //redirect to previous page
         $referer = $request->headers->get('referer');
         return new RedirectResponse($referer);
-
     }
 
-    protected function loadAllFromDB($item) {
+    protected function loadAllFromDB($item)
+    {
 
         $bundleName = ucfirst(rtrim($item, "s"));
 
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository("AppBundle:".$bundleName);
+        $repository = $entityManager->getRepository("AppBundle:" . $bundleName);
 
         $allItems = $repository->findAll();
 
-        return $this->render("AppBundle:Admin:admin".$bundleName."s.html.twig", ['items' => $allItems]);
+        return $this->render("AppBundle:Admin:admin" . $bundleName . "s.html.twig", ['items' => $allItems]);
     }
 
-    protected function generateQuestionForm($obj) {
+    //generator for editing or adding new question or advice form
+
+    protected function generateQuestionForm($obj)
+    {
 
         $newForm = $this->createFormBuilder($obj)
-                ->setMethod("POST")
-                ->add("text", TextType::class, ["label" => "Tekst: "])
-                ->add("save", SubmitType::class, ['label' => 'Modyfikuj'])
-                ->getForm();
+            ->setMethod("POST")
+            ->add("text", TextType::class, ["label" => "Tekst: "])
+            ->add("save", SubmitType::class, ['label' => 'Wyślij'])
+            ->getForm();
 
         return $newForm;
+    }
+
+    //uploading new question or answer into DB with redirecting after upload
+
+    protected function newQuestionAdvice($newForm, $topics)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $newText = $newForm->getData();
+        $entityManager->persist($newText);
+        $entityManager->flush($newText);
+
+        if ($topics == 'questions') {
+            return $this->redirectToRoute('app_admin_users', ['item' => "questions"]);
+        } elseif ($topics == 'advices') {
+            return $this->redirectToRoute('app_admin_users', ['item' => "advices"]);
+        }
     }
 
 }
