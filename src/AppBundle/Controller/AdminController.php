@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use function Sodium\add;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -56,6 +54,15 @@ class AdminController extends Controller
     public function deleteQuestionAction($id) {
 
         return $this->deleteFromDB("questions", $id);
+    }
+
+    /**
+     * @Route("/advices/delete/{id}/")
+     */
+    public function deleteAdviceAction($id) {
+
+        return $this->deleteFromDB("advices", $id);
+
     }
 
     /**

@@ -31,7 +31,7 @@ class Advice
     /**
      * One Advice has One Question
      * @ORM\OneToOne(targetEntity="Question", inversedBy="advice")
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $question;
 
