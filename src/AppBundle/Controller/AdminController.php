@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -34,33 +35,33 @@ class AdminController extends Controller
     /**
      * @Route("/tests/delete/{id}/")
      */
-    public function deleteTestAction($id) {
+    public function deleteTestAction($id, Request $request) {
 
-        return $this->deleteFromDB("tests", $id);
+        return $this->deleteFromDB("tests", $id, $request);
     }
 
     /**
      * @Route("/users/delete/{id}/")
      */
-    public function deleteUserAction($id) {
+    public function deleteUserAction($id, Request $request) {
 
-        return $this->deleteFromDB("users", $id);
+        return $this->deleteFromDB("users", $id, $request);
     }
 
     /**
      * @Route("/questions/delete/{id}/")
      */
-    public function deleteQuestionAction($id) {
+    public function deleteQuestionAction($id, Request $request) {
 
-        return $this->deleteFromDB("questions", $id);
+        return $this->deleteFromDB("questions", $id, $request);
     }
 
     /**
      * @Route("/advices/delete/{id}/")
      */
-    public function deleteAdviceAction($id) {
+    public function deleteAdviceAction($id, Request $request) {
 
-        return $this->deleteFromDB("advices", $id);
+        return $this->deleteFromDB("advices", $id, $request);
 
     }
 
@@ -95,7 +96,7 @@ class AdminController extends Controller
         return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
     }
 
-    protected function deleteFromDB($name, $id) {
+    protected function deleteFromDB($name, $id, $request) {
 
         $bundleName = ucfirst(rtrim($name, "s"));
 
@@ -106,7 +107,8 @@ class AdminController extends Controller
         $entityManager->remove($toRemove);
         $entityManager->flush($toRemove);
 
-        return $this->redirectToRoute('app_admin_'.$name);
+        $referer = $request->headers->get('referer');
+        return new RedirectResponse($referer);
 
     }
 
