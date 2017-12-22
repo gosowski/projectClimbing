@@ -31,7 +31,6 @@ class AdminController extends Controller
         return $this->loadAllFromDB($item);
     }
 
-
     /**
      * @Route("/tests/delete/{id}/")
      */
@@ -94,28 +93,6 @@ class AdminController extends Controller
         }
 
         return $this->render('AppBundle:Admin:adminModify.html.twig', ['form' => $newForm->createView()]);
-    }
-
-    /**
-     * @Route("/advices/update/{id}/")
-     */
-    public function updateAdviceAction($id, Request $request) {
-
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $repository = $entityManager->getRepository("AppBundle:Advice");
-        $toModify = $repository->find($id);
-
-        $newForm = $this->generateAdviceForm($toModify);
-        $newForm->handleRequest($request);
-
-        if($newForm->isSubmitted() && $newForm->isValid()) {
-            $newText = $newForm->getData();
-            dump($newText);
-
-        }
-
-        return $this->render("AppBundle:Admin:adminModify.html.twig", ['form' => $newForm->createView()]);
     }
 
     protected function deleteFromDB($name, $id) {
