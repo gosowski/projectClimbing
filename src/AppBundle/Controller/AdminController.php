@@ -33,36 +33,11 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/tests/delete/{id}/")
+     * @Route("/{topics}/delete/{id}/")
      */
-    public function deleteTestAction($id, Request $request) {
+    public function deleteTopicAction($topics, $id, Request $request) {
 
-        return $this->deleteFromDB("tests", $id, $request);
-    }
-
-    /**
-     * @Route("/users/delete/{id}/")
-     */
-    public function deleteUserAction($id, Request $request) {
-
-        return $this->deleteFromDB("users", $id, $request);
-    }
-
-    /**
-     * @Route("/questions/delete/{id}/")
-     */
-    public function deleteQuestionAction($id, Request $request) {
-
-        return $this->deleteFromDB("questions", $id, $request);
-    }
-
-    /**
-     * @Route("/advices/delete/{id}/")
-     */
-    public function deleteAdviceAction($id, Request $request) {
-
-        return $this->deleteFromDB("advices", $id, $request);
-
+        return $this->deleteFromDB($topics, $id, $request);
     }
 
     /**
